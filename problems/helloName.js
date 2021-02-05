@@ -3,7 +3,7 @@
  * @param {string} name Any name
  * @returns {string} "Hello, {name}"
  */
-const helloName = (name) => `Hello, ${name}`;
+const helloName = (name) => `Goodbye, ${name}`;
 
 module.exports = {
   helloName,
