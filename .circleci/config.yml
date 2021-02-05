@@ -1,7 +1,29 @@
+jobs:
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit
+            JEST_JUNIT_SUITE_NAME: '{filename}'
+            JEST_JUNIT_CLASSNAME: '{filename}'
+            JEST_JUNIT_ADD_FILE_ATTRIBUTE: 'true'
+          command: npm run test
+      - store_test_results:
+          path: ./reports/junit
+      - store_artifacts:
+          path: ./reports/junit
+      - run:
+          name: Parse Test Results
+          command: node ./scripts/parseJunit.js $CIRCLE_PR_USERNAME $CIRCLE_BRANCH
+          when: always
 version: 2.1
 orbs:
-  node: circleci/node@3.0.0
+  node: circleci/node@4.1.0
 workflows:
   node-tests:
     jobs:
-      - node/test
+      - test

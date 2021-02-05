@@ -11,6 +11,12 @@
   "dependencies": {},
   "devDependencies": {
     "jest": "^26.6.3",
-    "jest-junit": "^12.0.0"
+    "jest-junit": "^12.0.0",
+    "junitxml-to-javascript": "^1.1.4"
+  },
+  "jest-junit": {
+    "suiteNameTemplate": "{filename}",
+    "classNameTemplate": "{filename}",
+    "outputDirectory": "reports/junit"
   }
 }
